@@ -19,21 +19,23 @@ const Window = ({ window }: { window: WindowType }) => {
                 withBorder
                 p={"xl"}
                 m={"xl"}
-                style={{ top: window.y, left: window.y }}
+                style={{ top: window.y, left: window.y, zIndex: window.z }}
                 w={window.w}
                 h={window.h}
-                onMouseDown={() => focusWindow(window.id)}
             >
                 <CardSection
                     withBorder
                     display={"flex"}
+                    className="handle"
                     style={{
                         justifyContent: "space-between",
                         alignItems: "center",
                     }}
+                    onMouseDownCapture={() => {
+                        focusWindow(window.id)
+                    }}
                 >
                     <Flex>
-                        <IconMenu2 cursor={"grab"} className="handle" />
                         <Title size={24} style={{ userSelect: "none" }}>
                             Window title
                         </Title>

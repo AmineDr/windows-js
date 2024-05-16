@@ -4,6 +4,8 @@ import Taskbar from "./components/taskbar";
 import { useEffect, useState } from "react";
 import WmContext from "./contexts/wmContext";
 import RefreshContext from "./contexts/refreshContext";
+import "./style.css"
+
 
 const constWindows: WindowType[] = [
     {
@@ -28,10 +30,12 @@ function App() {
         <MantineProvider>
             <RefreshContext.Provider value={{ refresh, setRefresh }}>
                 <WmContext.Provider value={{ windows, setWindows }}>
+                    <div className="bg">
                     {windows.map((w) => (
                         <WindowComponent window={w} key={w.id} />
                     ))}
                     <Taskbar />
+                    </div>
                 </WmContext.Provider>
             </RefreshContext.Provider>
         </MantineProvider>
