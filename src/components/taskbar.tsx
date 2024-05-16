@@ -1,23 +1,28 @@
-import { Button, Text } from "@mantine/core";
+import { Button } from "@mantine/core";
 import useWindows from "../hooks/useWindows";
 import classes from "./styles/taskbar.module.css";
-import { IconPlus } from "@tabler/icons-react";
+import { IconDotsVertical, IconPlus } from "@tabler/icons-react";
 
 const Taskbar = () => {
-    const { windows, addWindow } = useWindows();
+    const { windows, focusWindow, addWindow } = useWindows();
     return (
         <div className={classes.taskbar}>
-            <div className={classes.taskbarIcon}>
-                <Text>Taskbar</Text>
+            <div className={classes.taskbarIcons}>
+                <Button>Taskbar</Button>
                 <Button size="sm" onClick={addWindow}>
                     <IconPlus />
                 </Button>
+                <IconDotsVertical />
+                {windows.map((w) => (
+                    <Button
+                        size="sm"
+                        key={w.id}
+                        onClick={() => focusWindow(w.id)}
+                    >
+                        Window {w.id}
+                    </Button>
+                ))}
             </div>
-            {windows.map((w) => (
-                <div className={classes.taskbarIcon} key={w.id}>
-                    Window {w.id}
-                </div>
-            ))}
         </div>
     );
 };

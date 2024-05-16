@@ -10,8 +10,8 @@ import "./style.css"
 const constWindows: WindowType[] = [
     {
         id: 1,
-        x: 100,
-        y: 10,
+        x: 0,
+        y: 0,
         h: 250,
         w: 250,
         z: 101,
@@ -27,7 +27,7 @@ function App() {
     }, [refresh]);
 
     return (
-        <MantineProvider>
+        <MantineProvider defaultColorScheme="dark">
             <RefreshContext.Provider value={{ refresh, setRefresh }}>
                 <WmContext.Provider value={{ windows, setWindows }}>
                     <div className="bg">

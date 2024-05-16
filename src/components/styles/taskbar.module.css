@@ -8,12 +8,7 @@
     width: 100vw;
 }
 
-.taskbarIcon {
+.taskbarIcons {
     display: flex;
     align-items: center;
-    gap: 5px;
-    border: 1px solid black;
-    border-top: none;
-    width: fit-content;
-    padding: 0 15px;
 }

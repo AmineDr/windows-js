@@ -5,6 +5,7 @@ import RefreshContext from "../contexts/refreshContext";
 const useWindows = () => {
     const { windows, setWindows } = useContext(WmContext);
     const { setRefresh } = useContext(RefreshContext);
+    const bgElement = document.getElementsByClassName('bg')[0]
 
     const moveWindow = ({
         w_id,
@@ -26,11 +27,17 @@ const useWindows = () => {
         });
     };
 
+    const getRandomPosition = () => {
+        if (!bgElement) return [0, 0]
+        return [bgElement.clientWidth-250, bgElement.clientHeight-250]
+    }
+
     const addWindow = () => {
+        const [x, y] = getRandomPosition()
         const newWindow: WindowType = {
-            id: genMaxId() + 1,
-            x: Math.random() * 20,
-            y: Math.random() * 20,
+            id: Math.round(Math.random()*69420),
+            x: x,
+            y: y,
             h: 250,
             w: 250,
             z: getMaxZ() + 1,
@@ -40,10 +47,6 @@ const useWindows = () => {
             return prev;
         });
         setRefresh(true);
-    };
-
-    const genMaxId = () => {
-        return Math.max(...windows.map((w) => w.id));
     };
 
     const getMaxZ = () => {

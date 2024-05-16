@@ -1,27 +1,32 @@
 import { Card, CardSection, CloseIcon, Flex, Text, Title } from "@mantine/core";
 import classes from "./styles/windows.module.css";
-import { IconMenu2 } from "@tabler/icons-react";
 import useWindows from "../hooks/useWindows";
 import Draggable from "react-draggable";
 
 const Window = ({ window }: { window: WindowType }) => {
     const { destroyWindow, focusWindow } = useWindows();
+    const bgElement = document.getElementsByClassName('bg')[0]
 
+    console.log()
     return (
         <Draggable
             axis="both"
             handle=".handle"
+            defaultClassName={classes.window}
             grid={[1, 1]}
             scale={1}
+            bounds={{top: 0, left: 0, right: bgElement?.clientWidth-window.w, bottom: bgElement?.clientHeight-window.h-40}}
             defaultPosition={{ x: window.x, y: window.y }}
         >
             <Card
                 withBorder
                 p={"xl"}
-                m={"xl"}
                 style={{ top: window.y, left: window.y, zIndex: window.z }}
                 w={window.w}
                 h={window.h}
+                onMouseDownCapture={() => {
+                    focusWindow(window.id)
+                }}
             >
                 <CardSection
                     withBorder
@@ -30,9 +35,6 @@ const Window = ({ window }: { window: WindowType }) => {
                     style={{
                         justifyContent: "space-between",
                         alignItems: "center",
-                    }}
-                    onMouseDownCapture={() => {
-                        focusWindow(window.id)
                     }}
                 >
                     <Flex>
