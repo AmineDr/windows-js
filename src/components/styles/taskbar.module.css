@@ -1,0 +1,19 @@
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    border: 1px solid #0005;
+    background-color: var(--mantine-color-blue-5);
+    width: 100vw;
+}
+
+.taskbarIcon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid black;
+    border-top: none;
+    width: fit-content;
+    padding: 0 15px;
+}

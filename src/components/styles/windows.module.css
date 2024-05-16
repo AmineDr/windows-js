@@ -1,0 +1,8 @@
+.window {
+    position: sticky
+}
+
+.content {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
